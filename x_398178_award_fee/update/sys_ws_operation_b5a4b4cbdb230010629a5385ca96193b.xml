@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>Entry Point</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	
+	var sys_id = "b5a4b4cbdb230010629a5385ca96193b", service;
+		service = new AwardService(sys_id, '/', response);
+		service.queryTable().getContent();
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_398178_award_fee/awards</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-18 22:10:31</sys_created_on>
+        <sys_id>b5a4b4cbdb230010629a5385ca96193b</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Entry Point</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_update_name>sys_ws_operation_b5a4b4cbdb230010629a5385ca96193b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-19 00:56:20</sys_updated_on>
+        <web_service_definition display_value="awards">70643ccbdb230010629a5385ca961957</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>
