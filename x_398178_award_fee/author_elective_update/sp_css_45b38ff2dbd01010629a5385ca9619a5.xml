@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css">
+    <sp_css action="DELETE">
+        <css>body{background:wheat}</css>
+        <name>styles.css</name>
+        <sys_class_name>sp_css</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-24 20:44:05</sys_created_on>
+        <sys_id>45b38ff2dbd01010629a5385ca9619a5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>styles.css</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_update_name>sp_css_45b38ff2dbd01010629a5385ca9619a5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-24 20:44:05</sys_updated_on>
+    </sp_css>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Award Fee">b1acdc76db230010629a5385ca961982</application>
+        <file_path/>
+        <instance_id>912af92cdbf113c0b2e05d00cf961981</instance_id>
+        <instance_name>dev57615</instance_name>
+        <name>sp_css_45b38ff2dbd01010629a5385ca9619a5</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css"><sp_css action="INSERT_OR_UPDATE"><css>body{background:wheat}</css><name>styles.css</name><sys_class_name>sp_css</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-04-24 20:44:05</sys_created_on><sys_id>45b38ff2dbd01010629a5385ca9619a5</sys_id><sys_mod_count>0</sys_mod_count><sys_name>styles.css</sys_name><sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package><sys_policy/><sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope><sys_update_name>sp_css_45b38ff2dbd01010629a5385ca9619a5</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-04-24 20:44:05</sys_updated_on></sp_css></record_update>]]></payload>
+        <payload_hash>930786146</payload_hash>
+        <record_name>styles.css</record_name>
+        <reverted_from/>
+        <source>939a3ef3dbd01010629a5385ca9619a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-24 20:44:05</sys_created_on>
+        <sys_id>e3c34ff2dbd01010629a5385ca961943</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_recorded_at>171adeee06b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-27 22:37:51</sys_updated_on>
+        <type>Style Sheet</type>
+        <update_guid>2fc34ff22ad01010c719596f6b99c742</update_guid>
+        <update_guid_history>2fc34ff22ad01010c719596f6b99c742:930786146</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="styles.css">84384bb6dbd01010629a5385ca9619f0</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-24 21:03:13</sys_created_on>
+        <sys_db_object display_value="" name="sp_css">sp_css</sys_db_object>
+        <sys_id>328dc4ce65f343488a6326b386f46790</sys_id>
+        <sys_metadata>45b38ff2dbd01010629a5385ca9619a5</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>styles.css</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_scope_delete display_value="">6b4751d4f7c44290a0e7b71da90679a4</sys_scope_delete>
+        <sys_update_name>sp_css_45b38ff2dbd01010629a5385ca9619a5</sys_update_name>
+        <sys_update_version display_value="sp_css_45b38ff2dbd01010629a5385ca9619a5">e3c34ff2dbd01010629a5385ca961943</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-24 21:03:13</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

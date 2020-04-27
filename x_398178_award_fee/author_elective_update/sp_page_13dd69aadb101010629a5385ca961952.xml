@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="DELETE">
+        <category>custom</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>direct_page</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-23 19:50:40</sys_created_on>
+        <sys_id>13dd69aadb101010629a5385ca961952</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>direct_page</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_update_name>sp_page_13dd69aadb101010629a5385ca961952</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-23 19:50:40</sys_updated_on>
+        <title>Direct Page</title>
+    </sp_page>
+    <sys_translated_text action="DELETE" query="documentkey=13dd69aadb101010629a5385ca961952"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Award Fee">b1acdc76db230010629a5385ca961982</application>
+        <file_path/>
+        <instance_id>912af92cdbf113c0b2e05d00cf961981</instance_id>
+        <instance_name>dev57615</instance_name>
+        <name>sp_page_13dd69aadb101010629a5385ca961952</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page"><sp_page action="INSERT_OR_UPDATE"><category>custom</category><css/><draft>false</draft><dynamic_title_structure/><id>direct_page</id><internal>false</internal><public>false</public><roles/><short_description/><sys_class_name>sp_page</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-04-23 19:50:40</sys_created_on><sys_id>13dd69aadb101010629a5385ca961952</sys_id><sys_mod_count>0</sys_mod_count><sys_name>direct_page</sys_name><sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package><sys_policy/><sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope><sys_update_name>sp_page_13dd69aadb101010629a5385ca961952</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-04-23 19:50:40</sys_updated_on><title>Direct Page</title></sp_page><sys_translated_text action="delete_multiple" query="documentkey=13dd69aadb101010629a5385ca961952"/></record_update>]]></payload>
+        <payload_hash>986259478</payload_hash>
+        <record_name>direct_page</record_name>
+        <reverted_from/>
+        <source>939a3ef3dbd01010629a5385ca9619a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-23 19:50:40</sys_created_on>
+        <sys_id>57fdedeadb101010629a5385ca9619aa</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_recorded_at>171a8979ba60000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-27 22:37:51</sys_updated_on>
+        <type>Page</type>
+        <update_guid>1ffde9a64c10101028d1d07e57f032ce</update_guid>
+        <update_guid_history>1ffde9a64c10101028d1d07e57f032ce:986259478</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="direct_page">3f6fad2edb101010629a5385ca961932</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-23 19:56:59</sys_created_on>
+        <sys_db_object display_value="" name="sp_page">sp_page</sys_db_object>
+        <sys_id>48ef39ab818a482ea9b7929216be5da1</sys_id>
+        <sys_metadata>13dd69aadb101010629a5385ca961952</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>direct_page</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_scope_delete display_value="">6b4751d4f7c44290a0e7b71da90679a4</sys_scope_delete>
+        <sys_update_name>sp_page_13dd69aadb101010629a5385ca961952</sys_update_name>
+        <sys_update_version display_value="sp_page_13dd69aadb101010629a5385ca961952">57fdedeadb101010629a5385ca9619aa</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-23 19:56:59</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_398178_award_fee.getCurrentUser</name>
+        <script><![CDATA[function CurrentUser(){
+	this.userName = window.NOW.user.name;
+	this.token = window.g_ck;
+	this.uri = '/api/now/table/sys_user';
+	this.query = 'sysparm_query=user_name%3D{{userName}}';
+	this.limit = 'sysparm_limit=1';
+	this.fields = 'sysparm_fields=';
+	this.client = new XMLHttpRequest();
+}
+
+CurrentUser.prototype.get = function(){
+	this.client.open('get', this.uri + '?'+ this.query.replace('{{userName}}', this.userName) + '&' + this.limit);
+	this.client.setRequestHeader('Accept','application/json');
+	this.client.setRequestHeader('Content-Type','application/json');
+	this.client.setRequestHeader('X-UserToken', this.token);
+	this.client.onloadend = function(){
+		if (this.status === 200) { 
+			console.table(JSON.parse(this.response).result[0]); 
+		}
+		else { 
+			console.error('Error: '+ this.status + ' - ' + this.statusText, JSON.parse(this.responseText));
+		}
+	}
+	this.client.send();
+};
+
+new CurrentUser().get();]]></script>
+        <script_name>getCurrentUser</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-24 15:17:16</sys_created_on>
+        <sys_id>c8a3f936db101010629a5385ca961962</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_398178_award_fee.getCurrentUser</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_update_name>sys_ui_script_c8a3f936db101010629a5385ca961962</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-24 15:24:12</sys_updated_on>
+        <ui_type>10</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

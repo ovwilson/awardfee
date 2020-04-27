@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
+        <sp_dependency display_value="resources">de936166db101010629a5385ca96199e</sp_dependency>
+        <sp_widget display_value="Award Fee Widget">5e11a1e2db101010629a5385ca96196a</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-23 19:05:26</sys_created_on>
+        <sys_id>2ca3ad26db101010629a5385ca96194d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>resources.Award Fee Widget</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_2ca3ad26db101010629a5385ca96194d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-23 19:05:26</sys_updated_on>
+    </m2m_sp_widget_dependency>
+</record_update>
