@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_398178_award_fee.getFiles</name>
+        <script><![CDATA[function GetFiles(){
+	this.token = window.g_ck;
+	this.uri = '/api/x_398178_award_fee/awards/';
+	this.client = null;
+	this.files = [
+		{ name :'runtime-es5.js%20', defer: true, module: false},
+		{ name :'runtime-es2015.js%20', defer: false, module: true},
+		{ name :'polyfills-es5.js%20', defer: true, module: false},
+		{ name :'polyfills-es2015.js%20', defer: false, module: true},
+		{ name :'main-es5.js%20', defer: true, module: false },
+		{ name :'main-es2015.js%20', defer: false, module: true}
+	];
+	this.files.forEach(function(file,idx){
+		GetFiles.prototype.get.call(this,file);
+	},this);
+}
+
+GetFiles.prototype.get = function(file){
+	if (file) {
+	this.client = new XMLHttpRequest();	
+	this.client.open('get', this.uri + file.name);
+	this.client.setRequestHeader('Accept','application/json');
+	this.client.setRequestHeader('Content-Type','application/json');
+	this.client.setRequestHeader('X-UserToken', this.token);
+	this.client.onloadend = function(){
+		if (this.status === 200) { 
+			console.log(this.status+ ' - ' + this.statusText);
+			GetFiles.prototype.createScriptTag.call(this, this.responseText, file);
+			// console.table(JSON.parse(this.response).result[0]); 
+		}
+		else { 
+			console.error('Error: '+ this.status + ' - ' + this.statusText, JSON.parse(this.responseText));
+		}
+	};
+	this.client.send();
+  }
+};
+
+GetFiles.prototype.createScriptTag = function(content,file){
+	var body = document.getElementsByTagName('body')[0];
+	var newScript = document.createElement("script");
+	if (file.defer) { newScript.defer = true; newScript.setAttribute('nomodule',true);}
+	if (file.module) { newScript.setAttribute("type", "module"); }
+	var inlineScript = document.createTextNode(content);
+	newScript.appendChild(inlineScript); 
+	body.appendChild(newScript);
+};
+
+
+new GetFiles().get();
+]]></script>
+        <script_name>getFiles</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-28 01:17:13</sys_created_on>
+        <sys_id>17bd5b3bdb141010629a5385ca9619cd</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>x_398178_award_fee.getFiles</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_update_name>sys_ui_script_17bd5b3bdb141010629a5385ca9619cd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-28 20:29:59</sys_updated_on>
+        <ui_type>10</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
