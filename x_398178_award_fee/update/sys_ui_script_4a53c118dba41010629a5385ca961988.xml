@@ -16,32 +16,20 @@
     return __assign.apply(this, arguments);
 };
 var SNOW = /** @class */ (function () {
-    function SNOW() {
+    function SNOW(options) {
         var _this = this;
         this.token = function () { return window.g_ck || ''; };
-        this.table_sysid = 'a01b1d83dba30010629a5385ca961957';
-        this.uri = '/api/now/attachment';
-        this.query = 'sysparm_query=table_sys_idSTARTSWITH';
-        this.fileUri = '{{sys_id}}/file';
-        this.limit = 'sysparm_limit=10';
-        this.files = [
-            { name: 'runtime-es5.js%20', defer: true, module: false },
-            { name: 'runtime-es2015.js%20', defer: false, module: true },
-            { name: 'polyfills-es5.js%20', defer: true, module: false },
-            { name: 'polyfills-es2015.js%20', defer: false, module: true },
-            { name: 'main-es5.js%20', defer: true, module: false },
-            { name: 'main-es2015.js%20', defer: false, module: true }
-        ];
+        this.options = options;
         this.request(this.getMetaDataUri(), this.token())
             .then(function (xhr) { _this.onSuccess(xhr); return xhr; })
             .then(function (xhr) { return _this.setSysIds(xhr); })
             .then(function (transformedFiles) { return _this.getContent(transformedFiles); })["catch"](function (xhr) { return _this.onError(xhr); });
     }
-    SNOW.prototype.getMetaDataUri = function () { return this.uri + "?" + this.query + this.table_sysid + "&" + this.limit; };
-    SNOW.prototype.setContentUri = function (file) { return this.uri + "/" + this.fileUri.replace('{{sys_id}}', file.sys_id); };
+    SNOW.prototype.getMetaDataUri = function () { return this.options.uri + "?" + this.options.query + this.options.tableSysId + "&" + this.options.limit; };
+    SNOW.prototype.setContentUri = function (file) { return this.options.uri + "/" + this.options.fileUri.replace('{{sys_id}}', file.sys_id); };
     SNOW.prototype.setSysIds = function (xhr) {
         var data = JSON.parse(xhr.response).result;
-        return this.transformFiles(this.files, data);
+        return this.transformFiles(this.options.files, data);
     };
     SNOW.prototype.getContent = function (files) {
         var _this = this;
@@ -91,20 +79,35 @@ var SNOW = /** @class */ (function () {
     SNOW.prototype.onError = function (xhr) { console.error("Error: " + xhr.status + " - " + xhr.statusText, JSON.parse(xhr.responseText)); };
     return SNOW;
 }());
-new SNOW();]]></script>
+var options = {
+    tableSysId: 'a01b1d83dba30010629a5385ca961957',
+    uri: '/api/now/attachment',
+    query: 'sysparm_query=table_sys_idSTARTSWITH',
+    fileUri: '{{sys_id}}/file',
+    limit: 'sysparm_limit=10',
+    files: [
+        { name: 'runtime-es5.js%20', defer: true, module: false },
+        { name: 'runtime-es2015.js%20', defer: false, module: true },
+        { name: 'polyfills-es5.js%20', defer: true, module: false },
+        { name: 'polyfills-es2015.js%20', defer: false, module: true },
+        { name: 'main-es5.js%20', defer: true, module: false },
+        { name: 'main-es2015.js%20', defer: false, module: true }
+    ]
+};
+new SNOW(options);]]></script>
         <script_name>downloadResources</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-04-29 03:14:14</sys_created_on>
         <sys_id>4a53c118dba41010629a5385ca961988</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>x_398178_award_fee.downloadResources</sys_name>
         <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
         <sys_policy/>
         <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
         <sys_update_name>sys_ui_script_4a53c118dba41010629a5385ca961988</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-04-29 14:45:09</sys_updated_on>
+        <sys_updated_on>2020-04-29 14:56:12</sys_updated_on>
         <ui_type>10</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
