@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_398178_award_fee.downloadResources</name>
+        <script><![CDATA[var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var SNOW = /** @class */ (function () {
+    function SNOW() {
+        var _this = this;
+        this.token = function () { return window.g_ck || ''; };
+        this.table_sysid = 'a01b1d83dba30010629a5385ca961957';
+        this.uri = '/api/now/attachment';
+        this.query = 'sysparm_query=table_sys_idSTARTSWITH';
+        this.fileUri = '{{sys_id}}/file';
+        this.limit = 'sysparm_limit=10';
+        this.files = [
+            { name: 'runtime-es5.js%20', defer: true, module: false },
+            { name: 'runtime-es2015.js%20', defer: false, module: true },
+            { name: 'polyfills-es5.js%20', defer: true, module: false },
+            { name: 'polyfills-es2015.js%20', defer: false, module: true },
+            { name: 'main-es5.js%20', defer: true, module: false },
+            { name: 'main-es2015.js%20', defer: false, module: true }
+        ];
+        this.request(this.getMetaDataUri(), this.token())
+            .then(function (xhr) { _this.onSuccess(xhr); return xhr; })
+            .then(function (xhr) { return _this.setSysIds(xhr); })
+            .then(function (transformedFiles) { return _this.getContent(transformedFiles); })["catch"](function (xhr) { return _this.onError(xhr); });
+    }
+    SNOW.prototype.getMetaDataUri = function () { return this.uri + "?" + this.query + this.table_sysid + "&" + this.limit; };
+    SNOW.prototype.setContentUri = function (file) { return this.uri + "/" + this.fileUri.replace('{{sys_id}}', file.sys_id); };
+    SNOW.prototype.setSysIds = function (xhr) {
+        var data = JSON.parse(xhr.response).result;
+        return this.transformFiles(this.files, data);
+    };
+    SNOW.prototype.getContent = function (files) {
+        var _this = this;
+        files.map(function (file) { return _this.request(_this.setContentUri(file), _this.token())
+            .then(function (xhr) { _this.onSuccess(xhr); return xhr; })
+            .then(function (xhr) { return _this.setScriptTag(xhr, file); })["catch"](function (xhr) { return _this.onError(xhr); }); });
+    };
+    SNOW.prototype.setScriptTag = function (xhr, file) {
+        var body, newScript, inlineScript;
+        body = document.getElementsByTagName('body')[0];
+        newScript = document.createElement("script");
+        if (file.defer) {
+            newScript.defer = true;
+            newScript.setAttribute('nomodule', 'true');
+        }
+        if (file.module) {
+            newScript.setAttribute("type", "module");
+        }
+        inlineScript = document.createTextNode(xhr.responseText);
+        newScript.appendChild(inlineScript);
+        body.appendChild(newScript);
+    };
+    SNOW.prototype.transformFiles = function (files, data) {
+        var _this = this;
+        return files.map(function (file) { return _this.filterByFileName(file, data); });
+    };
+    SNOW.prototype.filterByFileName = function (file, data) {
+        var filteredFile = data.filter(function (d) { return d.file_name + '%20' === file.name; })[0];
+        return (__assign(__assign({}, file), { sys_id: filteredFile.sys_id }));
+    };
+    SNOW.prototype.request = function (url, token) {
+        var xhr = new XMLHttpRequest();
+        return new Promise(function (resolve, reject) {
+            xhr.open('get', url);
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('X-UserToken', token);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState !== 4)
+                    return;
+                xhr.status === 200 ? resolve(xhr) : reject(xhr);
+            };
+            xhr.send();
+        });
+    };
+    SNOW.prototype.onSuccess = function (xhr) { console.info(xhr.status + " - " + xhr.statusText); };
+    SNOW.prototype.onError = function (xhr) { console.error("Error: " + xhr.status + " - " + xhr.statusText, JSON.parse(xhr.responseText)); };
+    return SNOW;
+}());
+new SNOW();]]></script>
+        <script_name>downloadResources</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-29 03:14:14</sys_created_on>
+        <sys_id>4a53c118dba41010629a5385ca961988</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>x_398178_award_fee.downloadResources</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_update_name>sys_ui_script_4a53c118dba41010629a5385ca961988</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-29 14:45:09</sys_updated_on>
+        <ui_type>10</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

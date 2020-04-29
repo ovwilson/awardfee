@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="DELETE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_398178_award_fee.getFiles</name>
+        <script><![CDATA[function GetFiles(){
+	this.token = window.g_ck;
+	this.attachmentUri = '/api/now/attachment';
+	this.table_sysid = 'a01b1d83dba30010629a5385ca961957';
+	this.uri = '/api/now/attachment';
+	this.query = 'sysparm_query=table_sys_idSTARTSWITH{{table_sysid}}';
+	this.fileUri = '{{sys_id}}/file';
+	this.limit = 'sysparm_limit=10';
+	this.client = null;
+	this.scriptTags = [
+		{ name :'runtime-es5.js%20', defer: true, module: false},
+		{ name :'runtime-es2015.js%20', defer: false, module: true},
+		{ name :'polyfills-es5.js%20', defer: true, module: false},
+		{ name :'polyfills-es2015.js%20', defer: false, module: true},
+		{ name :'main-es5.js%20', defer: true, module: false },
+		{ name :'main-es2015.js%20', defer: false, module: true}
+	];
+	this.files = [];
+}
+
+GetFiles.prototype.findFiles = function(){
+	GetFiles.prototype.send.call(this,this.attachmentUri+'?'+this.query.replace('{{table_sysid}}',this.table_sysid));
+};
+
+GetFiles.prototype.transform = function(){
+	this.files = this.files.map(function(file){
+		var tag = this.scriptTags.filter(function(val){ return val['name'] === file['file_name'];});
+		file['defer'] = tag[0].defer;
+		file['module'] = tag[0].module;
+		return file;
+	});
+};
+
+GetFiles.prototype.send = function(url){
+	this.client = new XMLHttpRequest();	
+	this.client.open('get', url);
+	this.client.setRequestHeader('Accept','application/json');
+	this.client.setRequestHeader('Content-Type','application/json');
+	this.client.setRequestHeader('X-UserToken', this.token);
+	this.client.onloadend = function(){
+		if (this.status === 200) { 
+			console.log(this.status+ ' - ' + this.statusText);
+			//this.files = JSON.parse(this.response).result;
+			GetFiles.prototype.retrieveFiles.call(this, JSON.parse(this.response).result);
+		}
+		else { 
+			console.error('Error: '+ this.status + ' - ' + this.statusText, JSON.parse(this.responseText));
+		}
+	};
+	this.client.send();
+}
+
+GetFiles.prototype.retrieveFiles = function(files){
+	files.forEach(function(file,idx){
+		GetFiles.prototype.get.call(this,file);
+	},this);
+}
+
+GetFiles.prototype.get = function(file){
+	if (file) {
+	this.client = new XMLHttpRequest();	
+	this.client.open('get', this.attachmentUri + '/'+ this.fileUri.replace('{{sys_id}}',file.sys_id ));
+	this.client.setRequestHeader('Accept','application/json');
+	this.client.setRequestHeader('Content-Type','application/json');
+	this.client.setRequestHeader('X-UserToken', this.token);
+	this.client.onloadend = function(){
+		if (this.status === 200) { 
+			console.log(this.status+ ' - ' + this.statusText);
+			GetFiles.prototype.createScriptTag.call(this, this.responseText, file);
+			// console.table(JSON.parse(this.response).result[0]); 
+		}
+		else { 
+			console.error('Error: '+ this.status + ' - ' + this.statusText, JSON.parse(this.responseText));
+		}
+	};
+	this.client.send();
+  }
+};
+
+GetFiles.prototype.createScriptTag = function(content,file){
+	var body = document.getElementsByTagName('body')[0];
+	var newScript = document.createElement("script");
+	if (file.defer) { newScript.defer = true; newScript.setAttribute('nomodule',true);}
+	if (file.module) { newScript.setAttribute("type", "module"); }
+	var inlineScript = document.createTextNode(content);
+	newScript.appendChild(inlineScript); 
+	body.appendChild(newScript);
+};
+
+
+new GetFiles().findFiles();
+]]></script>
+        <script_name>getFiles</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-28 01:17:13</sys_created_on>
+        <sys_id>17bd5b3bdb141010629a5385ca9619cd</sys_id>
+        <sys_mod_count>49</sys_mod_count>
+        <sys_name>x_398178_award_fee.getFiles</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_update_name>sys_ui_script_17bd5b3bdb141010629a5385ca9619cd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-29 02:01:30</sys_updated_on>
+        <ui_type>10</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Award Fee">b1acdc76db230010629a5385ca961982</application>
+        <file_path/>
+        <instance_id>912af92cdbf113c0b2e05d00cf961981</instance_id>
+        <instance_name>dev57615</instance_name>
+        <name>sys_ui_script_17bd5b3bdb141010629a5385ca9619cd</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_script"&gt;&lt;sys_ui_script action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;description/&gt;&lt;global&gt;false&lt;/global&gt;&lt;name&gt;x_398178_award_fee.getFiles&lt;/name&gt;&lt;script&gt;&lt;![CDATA[function GetFiles(){
+	this.token = window.g_ck;
+	this.attachmentUri = '/api/now/attachment';
+	this.table_sysid = 'a01b1d83dba30010629a5385ca961957';
+	this.uri = '/api/now/attachment';
+	this.query = 'sysparm_query=table_sys_idSTARTSWITH{{table_sysid}}';
+	this.fileUri = '{{sys_id}}/file';
+	this.limit = 'sysparm_limit=10';
+	this.client = null;
+	this.scriptTags = [
+		{ name :'runtime-es5.js%20', defer: true, module: false},
+		{ name :'runtime-es2015.js%20', defer: false, module: true},
+		{ name :'polyfills-es5.js%20', defer: true, module: false},
+		{ name :'polyfills-es2015.js%20', defer: false, module: true},
+		{ name :'main-es5.js%20', defer: true, module: false },
+		{ name :'main-es2015.js%20', defer: false, module: true}
+	];
+	this.files = [];
+}
+
+GetFiles.prototype.findFiles = function(){
+	GetFiles.prototype.send.call(this,this.attachmentUri+'?'+this.query.replace('{{table_sysid}}',this.table_sysid));
+};
+
+GetFiles.prototype.transform = function(){
+	this.files = this.files.map(function(file){
+		var tag = this.scriptTags.filter(function(val){ return val['name'] === file['file_name'];});
+		file['defer'] = tag[0].defer;
+		file['module'] = tag[0].module;
+		return file;
+	});
+};
+
+GetFiles.prototype.send = function(url){
+	this.client = new XMLHttpRequest();	
+	this.client.open('get', url);
+	this.client.setRequestHeader('Accept','application/json');
+	this.client.setRequestHeader('Content-Type','application/json');
+	this.client.setRequestHeader('X-UserToken', this.token);
+	this.client.onloadend = function(){
+		if (this.status === 200) { 
+			console.log(this.status+ ' - ' + this.statusText);
+			//this.files = JSON.parse(this.response).result;
+			GetFiles.prototype.retrieveFiles.call(this, JSON.parse(this.response).result);
+		}
+		else { 
+			console.error('Error: '+ this.status + ' - ' + this.statusText, JSON.parse(this.responseText));
+		}
+	};
+	this.client.send();
+}
+
+GetFiles.prototype.retrieveFiles = function(files){
+	files.forEach(function(file,idx){
+		GetFiles.prototype.get.call(this,file);
+	},this);
+}
+
+GetFiles.prototype.get = function(file){
+	if (file) {
+	this.client = new XMLHttpRequest();	
+	this.client.open('get', this.attachmentUri + '/'+ this.fileUri.replace('{{sys_id}}',file.sys_id ));
+	this.client.setRequestHeader('Accept','application/json');
+	this.client.setRequestHeader('Content-Type','application/json');
+	this.client.setRequestHeader('X-UserToken', this.token);
+	this.client.onloadend = function(){
+		if (this.status === 200) { 
+			console.log(this.status+ ' - ' + this.statusText);
+			GetFiles.prototype.createScriptTag.call(this, this.responseText, file);
+			// console.table(JSON.parse(this.response).result[0]); 
+		}
+		else { 
+			console.error('Error: '+ this.status + ' - ' + this.statusText, JSON.parse(this.responseText));
+		}
+	};
+	this.client.send();
+  }
+};
+
+GetFiles.prototype.createScriptTag = function(content,file){
+	var body = document.getElementsByTagName('body')[0];
+	var newScript = document.createElement("script");
+	if (file.defer) { newScript.defer = true; newScript.setAttribute('nomodule',true);}
+	if (file.module) { newScript.setAttribute("type", "module"); }
+	var inlineScript = document.createTextNode(content);
+	newScript.appendChild(inlineScript); 
+	body.appendChild(newScript);
+};
+
+
+new GetFiles().findFiles();
+]]&gt;&lt;/script&gt;&lt;script_name&gt;getFiles&lt;/script_name&gt;&lt;sys_class_name&gt;sys_ui_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-04-28 01:17:13&lt;/sys_created_on&gt;&lt;sys_id&gt;17bd5b3bdb141010629a5385ca9619cd&lt;/sys_id&gt;&lt;sys_mod_count&gt;49&lt;/sys_mod_count&gt;&lt;sys_name&gt;x_398178_award_fee.getFiles&lt;/sys_name&gt;&lt;sys_package display_value="Award Fee" source="x_398178_award_fee"&gt;b1acdc76db230010629a5385ca961982&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Award Fee"&gt;b1acdc76db230010629a5385ca961982&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_script_17bd5b3bdb141010629a5385ca9619cd&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-04-29 02:01:30&lt;/sys_updated_on&gt;&lt;ui_type&gt;10&lt;/ui_type&gt;&lt;use_scoped_format&gt;false&lt;/use_scoped_format&gt;&lt;/sys_ui_script&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>260004692</payload_hash>
+        <record_name>x_398178_award_fee.getFiles</record_name>
+        <reverted_from/>
+        <source>88ac1c80db330010629a5385ca961925</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-29 02:01:30</sys_created_on>
+        <sys_id>28d2b818dba41010629a5385ca961974</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>171c3aaec560000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-29 02:01:30</sys_updated_on>
+        <type>UI Script</type>
+        <update_guid>60d2b81870a410106db3422102606574</update_guid>
+        <update_guid_history>60d2b81870a410106db3422102606574:260004692,0332f41403a41010b39f1e4b20219096:2017625280,c831bc547ca410100281eae3b6524fdb:-1507621835,7b3e2454baa41010aa7da2609af18ee4:2032675156,893d60d075a41010dcfa3e84ecc66e3c:-1471711859,002cec90c6a4101041b350fa743812c3:-2035216721,dfcbe41490a41010c8f6dbd60d9aab37:-566513429,4979e490dea4101064260a2e17528e45:-860926689,3749ec901aa410100d5b49fc4206bd5b:504031856,56617b4075241010d2ae38e2c8bd11dd:1069702288,878feb0c01e01010863e9895bf2368ad:-1623031790,c50eafc8cfe01010433a2119b2b5ab67:1913826170,3abd6fcc24e0101088cea36b01229385:1535346372,c0f6ebc857e010106ff8191924908bdf:-697969247,5ac62fc86de0101006a3b4e34f631aa4:2029653504,434663c893e01010652220192fc8de46:530175865,ae06a7c852e01010efd7faf530357ff8:1522286823,4ee42b4849e01010520eb894e21fc5b4:-296177603,53642b48a9e0101011d67790ec2b70cc:-1006171172,49242b882fe010103e2323db09ce084f:-1471471820,2593e7482ae01010d4e1954988730d07:-362115271,32d22f4803e010107301834e828a7a12:1241732741,7552eb843ee0101010f1611bf503032f:-2120542618,3c81a78412e0101038d6e840797b4760:-1412986799,371edf0419e0101032d13054a1f338b8:837343950,c99d9784f8e0101004b317f3c3389559:-1792502701,526d970442e01010739b2ea01dca0d38:1417763038,4a1d5b448fe010100261dd60b26dcec4:75078033,b3eb1b4450e0101069fab81958de564e:-1107640474,51fa97048ce01010007eb514b0331050:-1347675202,8ba0e640366010109eeacc2d0ef5a92f:-1460008781,0876fbf7245410106676f3775664dab1:323279800,8ad5b377d75410105c283387aa5942f1:1619012898,0fa4b3b77754101010a40808bce0a42a:1871081168,88c3377770541010964ae120685c939b:-608339186,1a71fb3749541010b269f98eda9ff804:-1027029926,7a51b7ffd3141010959aa5eca9f2ebf1:1973758652,c441b3ff0b14101059e52ecab9a3876f:1677578599,806ceb734c541010ca4f86903cf7e110:-1893575594,c61cab33f5541010c6ab971c4180effc:1406372167,b5aaa3ffe11410109eb6ef30a4c8c268:-2089270460,068827ff671410101e196f339e8d3a75:-1451545609,fa482f3f6614101058aefaade6ff7e89:-111085925,a618e7bf79141010609760e842fd9d32:-1632601074,8847a3bf78141010d584f8926fbe7a31:-1945428907,a196ab7fc0141010455525014915be80:1569530582,8e842f3f4d141010961a9cf55e9ed359:-432170126,a8d3af7b441410108ff2e2560513031d:-766054583,b1bf5f7b471410107e1e1a49c31fb3f4:-2117734265,751fd77bdc1410102b695a2090b01526:1908606630</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-29 14:44:13</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_script">sys_ui_script</sys_db_object>
+        <sys_id>06964dadb23146ab815c42c80955b1c9</sys_id>
+        <sys_metadata>17bd5b3bdb141010629a5385ca9619cd</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_398178_award_fee.getFiles</sys_name>
+        <sys_package display_value="Award Fee" source="x_398178_award_fee">b1acdc76db230010629a5385ca961982</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Award Fee">b1acdc76db230010629a5385ca961982</sys_scope>
+        <sys_scope_delete display_value="">6b4751d4f7c44290a0e7b71da90679a4</sys_scope_delete>
+        <sys_update_name>sys_ui_script_17bd5b3bdb141010629a5385ca9619cd</sys_update_name>
+        <sys_update_version display_value="sys_ui_script_17bd5b3bdb141010629a5385ca9619cd">28d2b818dba41010629a5385ca961974</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-29 14:44:13</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
